@@ -2,6 +2,7 @@
 # returns max value of array a
 # time complexity: O(n) -- we memoize the maximum
 
+# implementation
 def max(a, b, c):
     if b == len(a):
         return c
@@ -10,6 +11,7 @@ def max(a, b, c):
     else:
         return max(a, b + 1, c)
 
+# testing
 a = [1,2,3,4,5]
 b = [4,3,7,0,1]
 c = [8,4,3,2,-1]
