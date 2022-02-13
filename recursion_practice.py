@@ -44,19 +44,11 @@ import math
 
 
 def recursive2dArraySum(arr: array, array_x: int, array_y: int, sum: int):
-    # init_x = array_x
-    # init_y = array_y
     if array_y == 0 and array_x == 0:
-        return sum + arr[0][0]
-    # if array_x == 0:
-        # return sum + arr[0][array_y]
+        return sum
+    if array_y == 0:
+        array_x -= 1
+        array_y = len(arr[0])
+    return recursive2dArraySum(arr, array_x, array_y - 1, sum + arr[array_x][array_y - 1])
 
-    return recursive2dArraySum(arr, array_x, array_y - 1, sum + arr[array_x][array_y])
-    return recursive2dArraySum(arr, array_x - 1, array_y, sum + arr[array_x][array_y])
-    # if array_x != 0:
-    #     return sum + recursive2dArraySum(arr[array_x - 1][array_y])
-    # return sum + recursive2dArraySum(arr[array_x][array_y - 1])
-
-T = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-# print(T[0][1])
-print(recursive2dArraySum([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 2, 2, 0))
+print(recursive2dArraySum([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 2, 3, 0))
