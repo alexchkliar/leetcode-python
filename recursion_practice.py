@@ -101,13 +101,50 @@ from multiprocessing.dummy import Array
 
 # print(findAllSubsets([1, 2, 3, 4], 0, [1], []))
 
-def palindrome(string, index):
-    if string[index] != string[len(string) - index - 1]:
-        return False
-    if index == math.floor(len(string)/2):
-        return True
-    return palindrome(string, index + 1)
+# def palindrome(string, index):
+#     if string[index] != string[len(string) - index - 1]:
+#         return False
+#     if index == math.floor(len(string)/2):
+#         return True
+#     return palindrome(string, index + 1)
 
-print(palindrome("abcba", 0))
-print(palindrome("a", 0))
-print(palindrome("abb", 0))
+# print(palindrome("abcba", 0))
+# print(palindrome("a", 0))
+# print(palindrome("abb", 0))
+
+# def hanoi(n, start, end):
+#     if n == 1:
+#         print(start,'->',end)
+#     else:
+#         other = 6 - start - end
+#         hanoi(n - 1, start, other)
+#         print(start,'->', end)
+#         hanoi(n - 1, other, end)
+
+# hanoi(3, 1, 3)
+
+def recursiveArrayCheck(arr, index1, index2, index3):
+    if arr[index1] + arr[index2] == arr[index3] and index1 != index2 != index3:
+        return True
+
+    if index1 == index2 == index3 == len(arr) - 1:
+        return False
+
+    if index1 == index2 == len(arr) - 1:
+        index1 = 0
+        index2 = 0
+        index3 += 1
+
+    elif index1 == len(arr) - 1:
+        index1 = 0
+        index2 += 1
+
+    return recursiveArrayCheck(arr, index1 + 1, index2, index3)
+
+print(recursiveArrayCheck([1,2,3,4],0,0,0))
+print(recursiveArrayCheck([1,9,9,2],0,0,0))
+print(recursiveArrayCheck([-5,5,0,1],0,0,0))
+print(recursiveArrayCheck([1,1,1,1],0,0,0))
+print(recursiveArrayCheck([1,1,1,2],0,0,0))
+print(recursiveArrayCheck([1,1,1,2],0,0,0))
+print(recursiveArrayCheck([1,3,4,9],0,0,0))
