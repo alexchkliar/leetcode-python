@@ -39,11 +39,32 @@
 # print(reverseIterative("ab"))
 # print(reverseIterative("abcde"))
 
-def fizzBuzz(integers):
-    for i in range(0, integers + 1):
-        if i % 5 == 0 and i % 3 == 0: print("FizzBuzz")
-        elif i % 3 == 0: print("Fizz")
-        elif i % 5 == 0: print("Buzz")
-        else: print(i)
+# def fizzBuzz(integers):
+#     for i in range(0, integers + 1):
+#         if i % 5 == 0 and i % 3 == 0: print("FizzBuzz")
+#         elif i % 3 == 0: print("Fizz")
+#         elif i % 5 == 0: print("Buzz")
+#         else: print(i)
 
-fizzBuzz(25)
+# fizzBuzz(25)
+
+def testLoop(n):
+    count=0
+    k=n
+    i=1
+    j=1
+    while k >= 1:
+        while i <= 1000:
+            while j<=n:
+                count+=1
+                i=i*2
+                j=j+2
+                k=k/4
+    return count
+
+print("test")
+print(testLoop(2))
+print("test")
+# print(testLoop(100))
+# print(testLoop(1000))
+# print(testLoop(10000))

@@ -112,39 +112,65 @@ from multiprocessing.dummy import Array
 # print(palindrome("a", 0))
 # print(palindrome("abb", 0))
 
-# def hanoi(n, start, end):
-#     if n == 1:
-#         print(start,'->',end)
+# def recursiveArrayCheck(arr, index1, index2, index3):
+#     if arr[index1] + arr[index2] == arr[index3] and index1 != index2 != index3:
+#         return True
+
+#     if index1 == index2 == index3 == len(arr) - 1:
+#         return False
+
+#     if index1 == index2 == len(arr) - 1:
+#         index1 = 0
+#         index2 = 0
+#         index3 += 1
+
+#     elif index1 == len(arr) - 1:
+#         index1 = 0
+#         index2 += 1
+
+#     return recursiveArrayCheck(arr, index1 + 1, index2, index3)
+
+# print(recursiveArrayCheck([1,2,3,4],0,0,0))
+# print(recursiveArrayCheck([1,9,9,2],0,0,0))
+# print(recursiveArrayCheck([-5,5,0,1],0,0,0))
+# print(recursiveArrayCheck([1,1,1,1],0,0,0))
+# print(recursiveArrayCheck([1,1,1,2],0,0,0))
+# print(recursiveArrayCheck([1,1,1,2],0,0,0))
+# print(recursiveArrayCheck([1,3,4,9],0,0,0))
+
+def hanoi(n, start, end, pegs):
+    if pegs is None:
+        pegs = [list(range(1,n+1,1)), list(), list()]
+        print(pegs)
+    if n == 1:
+        print(start,'->',end)
+        popped_peg = pegs[start-1].pop(0)
+        pegs[end-1].insert(0,popped_peg)
+        print(pegs)
+    else:
+        other = 6 - start - end
+
+        hanoi(n - 1, start, other, pegs)
+        print(start,'->', end)
+        popped_peg = pegs[start-1].pop(0)
+        pegs[end-1].insert(0,popped_peg)
+        print(pegs)
+
+        hanoi(n - 1, other, end, pegs)
+
+hanoi(3, 1, 3, pegs=None)
+
+# def Hanoi(n,start_,inter_,end_, pegs=None):  # new optional argument
+#     if pegs is None:
+#         pegs = [start_, inter_, end_]  # build a list of lists if one was not passed in
+#     if n==1:
+#         end_.append(start_.pop()) # using pop makes this much easier
+#         print('start_peg, inter_peg, end_peg :{}\t{}\t{}'.format(*pegs)) # prints in order
 #     else:
-#         other = 6 - start - end
-#         hanoi(n - 1, start, other)
-#         print(start,'->', end)
-#         hanoi(n - 1, other, end)
-
-# hanoi(3, 1, 3)
-
-def recursiveArrayCheck(arr, index1, index2, index3):
-    if arr[index1] + arr[index2] == arr[index3] and index1 != index2 != index3:
-        return True
-
-    if index1 == index2 == index3 == len(arr) - 1:
-        return False
-
-    if index1 == index2 == len(arr) - 1:
-        index1 = 0
-        index2 = 0
-        index3 += 1
-
-    elif index1 == len(arr) - 1:
-        index1 = 0
-        index2 += 1
-
-    return recursiveArrayCheck(arr, index1 + 1, index2, index3)
-
-print(recursiveArrayCheck([1,2,3,4],0,0,0))
-print(recursiveArrayCheck([1,9,9,2],0,0,0))
-print(recursiveArrayCheck([-5,5,0,1],0,0,0))
-print(recursiveArrayCheck([1,1,1,1],0,0,0))
-print(recursiveArrayCheck([1,1,1,2],0,0,0))
-print(recursiveArrayCheck([1,1,1,2],0,0,0))
-print(recursiveArrayCheck([1,3,4,9],0,0,0))
+#         Hanoi(n-1,start_,end_,inter_, pegs) # pass on the list of lists in each recursive call
+#         Hanoi(1,start_,inter_,end_, pegs)   # this lets the original order be preserved
+#         Hanoi(n-1,inter_,start_,end_, pegs)
+# n=3
+# A=list(range(n,0,-1))
+# B,C=[],[]
+# Hanoi(n, A, B, C)
