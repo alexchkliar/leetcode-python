@@ -1,21 +1,42 @@
-def recursiveCanReach(arr, start_index, solution_trace = []):
-    if (start_index >= len(arr) or start_index < 0):
+def recursiveCanReach(arr, current_index, solution_trace = []):
+    if (current_index >= len(arr) or current_index < 0 or current_index in solution_trace):
         return False
-    new_index_up = start_index + arr[start_index]
-    new_index_down = start_index - arr[start_index]
-    print("Array: ", arr, "New index up: ", new_index_up, "New index down: ", new_index_down, "Trace: ", solution_trace)
-    if solution_trace is None:
-        if ((new_index_up < 0 or new_index_up >= len(arr)) and
-        (new_index_down < 0 or new_index_down >= len(arr))):
-            return False
-    if ((new_index_up < 0 or new_index_up >= len(arr) or new_index_up in solution_trace) and
-    (new_index_down < 0 or new_index_down >= len(arr) or new_index_down in solution_trace)):
-        return False
-    if new_index_up == len(arr) - 1 or new_index_down == len(arr) - 1:
-        return [True, start_index, new_index_down, new_index_up]
+    if arr[current_index] == 0:
+        return True
     else:
-        return (recursiveCanReach(arr, new_index_up, solution_trace + [new_index_up])
-        or recursiveCanReach(arr, new_index_down, solution_trace + [new_index_down]))
+        return (recursiveCanReach(arr, current_index + arr[current_index], solution_trace + [current_index])
+        or recursiveCanReach(arr, current_index - arr[current_index], solution_trace + [current_index]))
 
-# print(recursiveCanReach([1,2,3,4,5], 0, []))
-print(recursiveCanReach([4,8,5,2,3,5,1,6,4,0], 0, [0]))
+def queueCanReach(arr, current_index):
+    index_tracker = []
+    queue = [0]
+    while(len(queue) > 0):
+        latest_index = queue.pop()
+        if 0 <= latest_index < len(arr) and latest_index not in index_tracker:
+            if arr[latest_index] == 0:
+                return True
+            index_tracker.append(latest_index)
+            queue.append(latest_index + arr[latest_index])
+            queue.append(latest_index - arr[latest_index])
+    return False
+
+
+a1 = [1,3,3,4,0]
+a2 = [4,8,5,2,3,5,1,6,4,0]
+a3 = [4,2,3,0,3,1,0]
+a4 = [1]
+a5 = [2,0]
+
+print(recursiveCanReach(a1, 0))
+print(recursiveCanReach(a2, 0))
+print(recursiveCanReach(a3, 0))
+print(recursiveCanReach(a4, 0))
+print(recursiveCanReach(a5, 0))
+
+print("-----------------")
+
+print(queueCanReach(a1, 0))
+print(queueCanReach(a2, 0))
+print(queueCanReach(a3, 0))
+print(queueCanReach(a4, 0))
+print(queueCanReach(a5, 0))
