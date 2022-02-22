@@ -9,7 +9,7 @@ def recursiveCanReach(arr, current_index, solution_trace = []):
 
 def queueCanReach(arr, current_index):
     index_tracker = []
-    queue = [0]
+    queue = [current_index]
     while(len(queue) > 0):
         latest_index = queue.pop()
         if 0 <= latest_index < len(arr) and latest_index not in index_tracker:
