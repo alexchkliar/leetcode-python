@@ -65,11 +65,57 @@ import csv
 # print(sum_of_first_n)
 
 
+# counter = itertools.repeat(2, times=3)
+
+# for i in counter:
+#     print(i)
+# print(next(counter))
+# print(next(counter))
+# print(next(counter))
+
+# x = [i ** 2 for i in range(10)]
+# print(x)
 
 
-counter = itertools.cycle([1,2,3])
+def lenfunc(n):
+    return n+1
 
-print(next(counter))
-print(next(counter))
-print(next(counter))
-print(next(counter))
+squares = map(pow, range(10), itertools.repeat(2))
+squraes2 = itertools.starmap(pow, [(0,2),(1,2),(2,2)])
+
+print(list(squares))
+print(list(squraes2))
+
+letters = ['a','b','c','d']
+result = itertools.permutations(letters, 2)
+# for item in result:
+#     print(item)
+
+print(len(list(result)))
+
+# numbers1 = [1,2,3,4]
+# numbers2= [5,6,7,8]
+
+
+# combined = itertools.chain(numbers1, numbers2)
+# print(list(combined))
+# iter = (i for i in range(50))
+# print(sum(1 for _ in iter))
+
+# slice = itertools.islice(range(10), 1, 5, 2)
+# print(list(range(10)))
+
+# for item in slice:
+#     print(item)
+
+# selectors = [True, False, True, False]
+# result = itertools.compress(letters, selectors)
+
+# for item in result:
+#     print(item)
+
+# def lt_2(n):
+#     return n<2
+
+# result = filter(lt_2, numbers1)
+# print(list(result))
