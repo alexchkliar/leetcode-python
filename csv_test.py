@@ -13,7 +13,6 @@ with open("username.csv", "r") as file:
     first_column = []
 
     for line in reader:
-        # print(line['col1'], line['col2'], line['col2'])
         first_column.append(int(line['col1']))
         total += int(line['col1'])
         count += 1
@@ -23,9 +22,6 @@ with open("username.csv", "r") as file:
 
 
 permutations = itertools.combinations(first_column, 2)
-print("wat")
-# print(list(permutations))
-# print(list(permutations))
 our_list = list(permutations)
 
 def mult(list):
@@ -35,12 +31,9 @@ def mult(list):
 
 multiplied = mult(our_list)
 
-print("hey")
-print(our_list)
 print(our_list)
 for output in multiplied:
     print(output)
-print("hey")
 
 set = {1,2,2,3}
 
