@@ -3,10 +3,10 @@ import csv
 
 exampleFile = open('username.csv')
 exampleReader = csv.reader(exampleFile)
-# exampleData = list(exampleReader)
+exampleData = list(exampleReader)
 
-# print(exampleData[0])
-# print(exampleReader)
+print(exampleData[0])
+print(exampleReader)
 for row in exampleReader:
     print('Row #' + str(exampleReader.line_num) + ' ' + str(row))
 
